@@ -902,6 +902,11 @@ export default class Select extends Component<Props, State> {
     this.openAfterFocus = false;
   };
   onInputBlur = (event: SyntheticFocusEvent<HTMLInputElement>) => {
+    // The following 4 lines were applied from https://github.com/JedWatson/react-select/pull/3013/files
+    if(this.menuListRef && this.menuListRef.contains(document.activeElement)) {
+      this.inputRef.focus();
+      return;
+    }
     if (this.props.onBlur) {
       this.props.onBlur(event);
     }

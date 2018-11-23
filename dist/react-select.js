@@ -3847,6 +3847,11 @@
 	  };
 
 	  this.onInputBlur = function (event) {
+	    // The following 4 lines were applied from https://github.com/JedWatson/react-select/pull/3013/files
+	    if (_this7.menuListRef && _this7.menuListRef.contains(document.activeElement)) {
+	      _this7.inputRef.focus();
+	      return;
+	    }
 	    if (_this7.props.onBlur) {
 	      _this7.props.onBlur(event);
 	    }
